@@ -3,7 +3,7 @@ import sys
 import json
 import re
 
-SEMGREP_APP_TOKEN = "XXXX"
+SEMGREP_APP_TOKEN = "b1dd0059a9e1c8dfa623aabf724b2058e2d442e8625e89e51ce65a6e0b4d3222"
 FILTER_IMPORTANT_FINDINGS = True
 
 def get_deployments():
