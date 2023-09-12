@@ -26,14 +26,11 @@ jobs:
       - name: execute py script # run main.py
         run: python main.py
 
-      - name: Create Zip File
-        run: find . -type f -name '*.json' -exec zip -r archive.zip {} +
-
       - name: Upload findings as Artifact     
         uses: actions/upload-artifact@v3
         with:
-          name: findings-zipfile
-          path: archive.zip
+          name: findings-csv
+          path: output.csv
           
       # - name: commit files
       #   run: |
