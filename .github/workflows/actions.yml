@@ -26,7 +26,7 @@ jobs:
       - name: create filename for findings file with current time & date
         run: | 
           echo "CURRENT_DATE=$(date +'%H-%M--%d-%m-%y')" >> $GITHUB_ENV
-          echo "TMP=Findings"
+          echo "TMP=Findings" >> GITHUB_ENV
           echo "FILENAME=$($TMP-$CURRENT_DATE)" >> $GITHUB_ENV
       
       - name: Use Date Env Var
