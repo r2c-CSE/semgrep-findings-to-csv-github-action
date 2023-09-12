@@ -5,4 +5,5 @@ This example shows how to run a Python script as cron job with GitHub Actions to
 * Implements your script in main.py
 * Inspect and configure cron job in GitHub Action .github/workflows/actions.yml
 * It can install and use third party packages from requirements.txt
-* Secret environment variables can be used. Set secrets in Settings/Secrets/Actions -> 'New repository secret'. Use the  secret name `SEMGREP_API_WEB_TOKEN` to store your Semgrep Web API token
+
+**IMPORTANT** Secret environment variables must be set . Set secrets in Settings/Secrets/Actions -> 'New repository secret'. Use the  secret name `SEMGREP_API_WEB_TOKEN` to store your Semgrep Web API token
