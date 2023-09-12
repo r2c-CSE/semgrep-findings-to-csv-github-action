@@ -53,5 +53,5 @@ jobs:
       - name: Upload findings as Artifact     
         uses: actions/upload-artifact@v3
         with:
-          name: $FILENAME
+          name: ${{ env.FILENAME }}
           path: output.csv
