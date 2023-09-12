@@ -5,12 +5,15 @@ import re
 import os
 import pandas as pd
 
+try:
+    SEMGREP_API_WEB_TOKEN = os.environ["SEMGREP_API_WEB_TOKEN"]
+except KeyError:
+    SEMGREP_API_WEB_TOKEN = "Token not available!"
 
-SEMGREP_APP_TOKEN = "xxxx"
 FILTER_IMPORTANT_FINDINGS = True
 
 def get_deployments():
-    headers = {"Accept": "application/json", "Authorization": "Bearer " + SEMGREP_APP_TOKEN}
+    headers = {"Accept": "application/json", "Authorization": "Bearer " + SEMGREP_API_WEB_TOKEN}
 
     r = requests.get('https://semgrep.dev/api/v1/deployments',headers=headers)
     if r.status_code != 200:
@@ -22,7 +25,7 @@ def get_deployments():
 
 def get_projects(slug_name):
     
-    headers = {"Accept": "application/json", "Authorization": "Bearer " + SEMGREP_APP_TOKEN}
+    headers = {"Accept": "application/json", "Authorization": "Bearer " + SEMGREP_API_WEB_TOKEN}
 
     r = requests.get('https://semgrep.dev/api/v1/deployments/' + slug_name + '/projects?page=0',headers=headers)
     if r.status_code != 200:
