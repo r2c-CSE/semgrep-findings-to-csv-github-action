@@ -81,5 +81,6 @@ def json_to_csv_pandas(json_file, csv_file):
 if __name__ == "__main__":
     slug_name = get_deployments()
     get_projects(slug_name)
-    combine_json_files('/Users/nnayar/projects/python-github-action-template', 'combined.json')
+    print ("starting process to combine JSON files")
+    combine_json_files('.', 'combined.json')
     json_to_csv_pandas('combined.json', 'output.csv')
