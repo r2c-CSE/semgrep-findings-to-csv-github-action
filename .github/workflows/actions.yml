@@ -46,12 +46,6 @@ jobs:
       - name: Upload findings as Artifact     
         uses: actions/upload-artifact@v3
         with:
-          name: findings-csv
-          path: output.csv
-
-      - name: Upload findings as Artifact     
-        uses: actions/upload-artifact@v3
-        with:
           name: ${{ env.FILENAME }}
           path: output.csv
           
