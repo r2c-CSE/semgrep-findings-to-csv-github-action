@@ -23,17 +23,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Set an env var
-        run: echo "MY_ENV_VAR=My String Value" >> $GITHUB_ENV
+      # - name: Set an env var
+      #   run: echo "TMP=Findings" >> GITHUB_ENV
 
-      - name: Display the env var
-        run: echo "$MY_ENV_VAR"
+      # - name: Display the env var
+      #   run: echo "$MY_ENV_VAR"
           
-      - name: create filename for findings file with current time & date
-        run: | 
-          echo "CURRENT_DATE=$(date +'%H-%M--%d-%m-%y')" >> $GITHUB_ENV
-          echo "TMP=Findings" >> GITHUB_ENV
-          echo "FILENAME=$($TMP-$CURRENT_DATE)" >> $GITHUB_ENV
+      - name: create filename for findings file with current time & date-1
+        run: echo "CURRENT_DATE=$(date +'%H-%M--%d-%m-%y')" >> $GITHUB_ENV
+
+      - name: create filename for findings file with current time & date-2
+        run: echo "TMP=Findings" >> GITHUB_ENV
+
+      - name: create filename for findings file with current time & date-3
+        run: echo "FILENAME=$($TMP-$CURRENT_DATE)" >> $GITHUB_ENV
       
       - name: Use Date Env Var
         run: |
