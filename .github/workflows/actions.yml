@@ -1,8 +1,9 @@
 name: run main.py
 
 on:
+  workflow_dispatch: 
   schedule:
-    - cron: '0 0 * * 1' # At 00:00 on Monday
+    - cron: '0 * * * *' # Run every hour at 00 minutes
 
 jobs:
   build:
@@ -26,6 +27,12 @@ jobs:
         env:
           SOME_SECRET: ${{ secrets.SOME_SECRET }}
         run: python main.py
+
+      - name: Upload findings as Artifact     
+        uses: actions/upload-artifact@v3
+        with:
+          name: 
+          path: maven_dep_tree.txt
           
       - name: commit files
         run: |
