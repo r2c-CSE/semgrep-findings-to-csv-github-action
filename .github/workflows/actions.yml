@@ -23,12 +23,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Set an env var
-        run: echo "MY_ENV_VAR=Findings" >> $GITHUB_ENV
-
-      - name: Display the env var
-        run: echo "$MY_ENV_VAR"
-          
       - name: create filename for findings file with current time & date-1
         run: echo "CURRENT_DATE=$(date +'%H-%M--%d-%m-%y')" >> $GITHUB_ENV
 
@@ -47,7 +41,6 @@ jobs:
       - name: execute py script # run main.py
         env:
           SEMGREP_API_WEB_TOKEN: ${{ secrets.SEMGREP_API_WEB_TOKEN }}
-
         run: python main.py
 
       - name: Upload findings as Artifact     
