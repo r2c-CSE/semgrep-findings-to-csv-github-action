@@ -22,11 +22,16 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Set Date Env Var
-        run: echo "CURRENT_DATE=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+          
+      - name: create filename for findings file with current time & date
+        run: | 
+          echo "CURRENT_DATE=$(date +'%H-%M--%d-%m-%y ')" >> $GITHUB_ENV
+          echo "FILENAME=$(findings-$CURRENT_DATE)" >> $GITHUB_ENV
       
       - name: Use Date Env Var
-        run: echo "$CURRENT_DATE"
+        run: |
+          echo "$CURRENT_DATE"
+          echo "$FILENAME"
           
       - name: execute py script # run main.py
         env:
@@ -39,16 +44,3 @@ jobs:
         with:
           name: findings-csv
           path: output.csv
-          
-      # - name: commit files
-      #   run: |
-      #     git config --local user.email "action@github.com"
-      #     git config --local user.name "GitHub Action"
-      #     git add -A
-      #     git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
-          
-      # - name: push changes
-      #   uses: ad-m/github-push-action@v0.6.0
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     branch: main 
