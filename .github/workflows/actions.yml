@@ -22,6 +22,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Set an env var
+        run: echo "MY_ENV_VAR=My String Value" >> $GITHUB_ENV
+
+      - name: Display the env var
+        run: echo "$MY_ENV_VAR"
           
       - name: create filename for findings file with current time & date
         run: | 
