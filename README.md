@@ -5,9 +5,18 @@ This example shows how to run a Python script as cron job with GitHub Actions to
 **IMPORTANT** Secret environment variables must be set. 
 * Set secrets in Settings/Secrets/Actions -> 'New repository secret'.
 * Use the  secret name `SEMGREP_API_WEB_TOKEN` to store your Semgrep Web API token
-* You can generate the `SEMGREP_API_WEB_TOKEN` from [https://semgrep.dev](https://semgrep.dev/orgs/~/settings/tokens). Make sure that the generated token has the `Toekn Scope` as  `WEB API`.
+* You can generate the `SEMGREP_API_WEB_TOKEN` from [https://semgrep.dev](https://semgrep.dev/orgs/~/settings/tokens). Make sure that the generated token has the `Token Scope` as  `WEB API`.
 
-* Implements your script in main.py
+## What does the script do?
+* The script does the following:
+  * Get your current deployment
+  * Get your projects
+  * Dump a JSON file for each projects
+  * Combines the per project JSON files into a single JSON files for the full Organization
+  * Converts the combined JSON file into a CSV file
+  * Saves the CSV file as an Artifact in GitHUb actions. The Artifact name is "Findings-Current Time -- Current Date"
+
+## Other Settings
 * Inspect and configure cron job in GitHub Action .github/workflows/actions.yml
 * It can install and use third party packages from requirements.txt
 
