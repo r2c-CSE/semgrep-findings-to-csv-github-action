@@ -39,8 +39,7 @@ def get_findings_per_repo(slug_name, repo):
     if r.status_code != 200:
         sys.exit(f'Get failed: {r.text}')
     data = json.loads(r.text)
-    # file_path = re.sub(r"[^\w\s]", "", repo) + ".json"
-    file_path = "findings.json"
+    file_path = re.sub(r"[^\w\s]", "", repo) + ".json"
     if FILTER_IMPORTANT_FINDINGS == True:
         data = [obj for obj in data['findings'] if obj["severity"] == "high" and obj["confidence"] == "high" or obj["confidence"] == "medium"]
     with open(file_path, "w") as file:
