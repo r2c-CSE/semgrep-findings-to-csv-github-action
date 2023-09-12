@@ -39,7 +39,7 @@ def get_projects(slug_name):
 
 def get_findings_per_repo(slug_name, repo):
       
-    headers = {"Accept": "application/json", "Authorization": "Bearer " + SEMGREP_APP_TOKEN}
+    headers = {"Accept": "application/json", "Authorization": "Bearer " + SEMGREP_API_WEB_TOKEN}
 
     r = requests.get('https://semgrep.dev/api/v1/deployments/' + slug_name + '/findings?repos='+repo,headers=headers)
     if r.status_code != 200:
