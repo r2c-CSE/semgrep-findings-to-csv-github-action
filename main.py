@@ -10,7 +10,7 @@ try:
 except KeyError:
     SEMGREP_API_WEB_TOKEN = "Token not available!"
 
-FILTER_IMPORTANT_FINDINGS = False
+FILTER_IMPORTANT_FINDINGS = True
 
 def get_deployments():
     headers = {"Accept": "application/json", "Authorization": "Bearer " + SEMGREP_API_WEB_TOKEN}
