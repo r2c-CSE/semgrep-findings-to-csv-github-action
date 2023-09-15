@@ -49,6 +49,8 @@ def get_findings_per_repo(slug_name, repo):
     # file_path = "findings.json"
     if FILTER_IMPORTANT_FINDINGS == True:
         data = [obj for obj in data['findings'] if obj["severity"] == "high" and obj["confidence"] == "high" or obj["confidence"] == "medium"]
+    else:
+        data = [obj for obj in data['findings'] ]
     with open(file_path, "w") as file:
          json.dump(data, file)
 
