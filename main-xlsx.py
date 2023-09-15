@@ -88,5 +88,5 @@ if __name__ == "__main__":
     combine_json_files('.', 'combined.json')
     print ("completed combine process")
     print ("starting process to convert combined JSON file to csv")
-    json_to_csv_pandas('combined.json', 'output.xlsx')
+    json_to_xlsx_pandas('combined.json', 'output.xlsx')
     print ("completed conversion process")
