@@ -1,4 +1,4 @@
-# Schedule a Python script with GitHub Actions to pull Semgrep Findings for full ORG and save as CSV
+# Schedule a Python script with GitHub Actions to pull Semgrep Findings for full ORG and save as CSV & XLSX format
 
 This example shows how to run a Python script as cron job with GitHub Actions to pull Semgrep Findings for full ORG and save as CSV. It calls an API once every hour (could be any schedule you want), downloads the findings as JSON, combines all the findings across all projects (repos) into a single JSON file, converts it into a CSV file and stores the findings as an Artifact.
 
@@ -13,8 +13,8 @@ This example shows how to run a Python script as cron job with GitHub Actions to
   * Get your projects
   * Dump a JSON file for each projects
   * Combines the per project JSON files into a single JSON files for the full Organization
-  * Converts the combined JSON file into a CSV file
-  * Saves the CSV file as an Artifact in GitHUb actions. The Artifact name is "Findings-Current Time -- Current Date"
+  * Converts the combined JSON file into a CSV & XLSX file
+  * Saves the CSV & XLSX file as an Artifact in GitHUb actions. The Artifact name is "Findings-Current Time -- Current Date"
 
 ## Other Settings
 * Inspect and configure cron job in GitHub Action .github/workflows/actions.yml
