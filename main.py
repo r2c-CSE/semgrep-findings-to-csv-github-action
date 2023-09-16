@@ -50,6 +50,7 @@ def get_findings_per_repo(slug_name, repo):
         data = [obj for obj in data['findings'] if obj["severity"] == "high" and obj["confidence"] == "high" or obj["confidence"] == "medium"]
     else:
         data = [obj for obj in data['findings'] ]
+
     with open(file_path, "w") as file:
          json.dump(data, file)
 
@@ -77,6 +78,13 @@ def combine_json_files(folder_path, output_file):
 def json_to_csv_pandas(json_file, csv_file):
     # Read the JSON file into a DataFrame
     df = pd.read_json(json_file)
+
+    # filter out only specific columns
+    
+    # update column to datetime format
+    df['first_seen_scan_id'] = pd.to_datetime(df['first_seen_scan_id'], format='%H-%M--%d-%b-%Y')
+    
+
     
     # Write the DataFrame to CSV
     df.to_csv(csv_file, index=False)
