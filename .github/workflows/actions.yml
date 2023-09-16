@@ -29,18 +29,12 @@ jobs:
           echo "CURRENT_DATE=$(date +'%H-%M--%d-%b-%Y')" >> $GITHUB_ENV
           echo "TEMP_STR=Findings" >> $GITHUB_ENV
     
-      # - name: create filename for findings file with current time & date-2
-      #   run: echo "TEMP_STR=Findings" >> $GITHUB_ENV
-
-      # - name: create filename for findings file with current time & date-3
-      #   run: echo "FILENAME=$TEMP_STR-$CURRENT_DATE" >> $GITHUB_ENV
-      
       - name: create filename for findings file with current time & date-3
         run: |
-          echo "FILENAME=$TEMP_STR-$CURRENT_DATE-CSV" >> $GITHUB_ENV
-          echo "FILENAMEXLSX=$TEMP_STR-$CURRENT_DATE-XLSX" >> $GITHUB_ENV
+          echo "FILENAME=$TEMP_STR-$CURRENT_DATE-CSV.csv" >> $GITHUB_ENV
+          echo "FILENAMEXLSX=$TEMP_STR-$CURRENT_DATE-XLSX.xlsx" >> $GITHUB_ENV
       
-      - name: Use Date Env Var
+      - name: Troubleshooting 
         run: |
           echo "$CURRENT_DATE"
           echo "$TEMP_STR"
@@ -53,15 +47,20 @@ jobs:
         run: |
           python main.py
 
+      - name: copy output.csv to $FILENAME.csv & output.xlsx to $FILENAME.xlsx
+        run: |
+          cp output.csv $FILENAME
+          cp output.xlsx $FILENAMEXLSX
+
       - name: Upload findings as Artifact- CSV     
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.FILENAME }}
-          path: output.csv
+          path: ${{ env.FILENAME }}
           
       - name: Upload findings as Artifact- XLSX   
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.FILENAMEXLSX }}
-          path: output.xlsx
+          path: ${{ env.FILENAMEXLSX }}
           
