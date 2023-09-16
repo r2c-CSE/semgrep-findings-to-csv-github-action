@@ -31,8 +31,8 @@ jobs:
     
       - name: create filename for findings file with current time & date-3
         run: |
-          echo "FILENAME=$TEMP_STR-$CURRENT_DATE-CSV.csv" >> $GITHUB_ENV
-          echo "FILENAMEXLSX=$TEMP_STR-$CURRENT_DATE-XLSX.xlsx" >> $GITHUB_ENV
+          echo "FILENAME=$TEMP_STR-$CURRENT_DATE.csv" >> $GITHUB_ENV
+          echo "FILENAMEXLSX=$TEMP_STR-$CURRENT_DATE.xlsx" >> $GITHUB_ENV
       
       - name: Troubleshooting 
         run: |
