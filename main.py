@@ -107,17 +107,23 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
 
     # df.set_option('max_colwidth', 24)
 
-    col_idx = df.columns.get_loc('rule_name')
-    writer.sheets['Findings'].set_column(col_idx, col_idx, 36)
+    df['rule_name'] = df['rule_name'].str.wrap(50)
+    df['rule_message'] = df['rule_message'].str.wrap(100)
+    df['repository'] = df['repository'].str.wrap(100)
+    df['location'] = df['location'].str.wrap(100)
+
     
-    col_idx = df.columns.get_loc('rule_message')
-    writer.sheets['Findings'].set_column(col_idx, col_idx, 72)
+    # col_idx = df.columns.get_loc('rule_name')
+    # writer.sheets['Findings'].set_column(col_idx, col_idx, 36)
     
-    col_idx = df.columns.get_loc('repository')
-    writer.sheets['Findings'].set_column(col_idx, col_idx, 72)
+    # col_idx = df.columns.get_loc('rule_message')
+    # writer.sheets['Findings'].set_column(col_idx, col_idx, 72)
     
-    col_idx = df.columns.get_loc('location')
-    writer.sheets['Findings'].set_column(col_idx, col_idx, 72)
+    # col_idx = df.columns.get_loc('repository')
+    # writer.sheets['Findings'].set_column(col_idx, col_idx, 72)
+    
+    # col_idx = df.columns.get_loc('location')
+    # writer.sheets['Findings'].set_column(col_idx, col_idx, 72)
     
     writer.close()
 
