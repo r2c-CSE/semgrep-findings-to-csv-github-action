@@ -119,7 +119,7 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
     col_idx = df.columns.get_loc('location')
     writer.sheets['Findings'].set_column(col_idx, col_idx, 72)
     
-    writer.save()
+    writer.close()
 
 if __name__ == "__main__":
     slug_name = get_deployments()
