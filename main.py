@@ -102,8 +102,14 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
     # Write the DataFrame to CSV
     # df.to_excel(xlsx_file, index=False)
 
+    for column in df:
+        column_width = max(df[column].astype(str).map(len).max(), len(column))
+        col_idx = df.columns.get_loc(column)
+        writer.sheets['my_analysis'].set_column(col_idx, col_idx, column_width)
+
+
     writer = pd.ExcelWriter(xlsx_file, engine='xlsxwriter') 
-    df.to_excel(writer, sheet_name='Findings', index=False, na_rep='NaN')
+    df.to_excel(writer, sheet_name='Findings', index=False)
     
     col_idx = df.columns.get_loc('rule_name')
     writer.sheets['Findings'].set_column(col_idx, col_idx, 50)
@@ -117,11 +123,11 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
     col_idx = df.columns.get_loc('location')
     writer.sheets['Findings'].set_column(col_idx, col_idx, 100)
 
-    col_idx = df.columns.get_loc('state')
-    writer.sheets['Findings'].set_column(col_idx, col_idx, 20)
+    # col_idx = df.columns.get_loc('state')
+    # writer.sheets['Findings'].set_column(col_idx, col_idx, 20)
 
-    col_idx = df.columns.get_loc('first_seen_scan_id')
-    writer.sheets['Findings'].set_column(col_idx, col_idx, 30)
+    # col_idx = df.columns.get_loc('first_seen_scan_id')
+    # writer.sheets['Findings'].set_column(col_idx, col_idx, 30)
     
     writer.close()
 
