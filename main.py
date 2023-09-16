@@ -80,7 +80,7 @@ def json_to_df(json_file):
     df = pd.read_json(json_file)
 
     # filter out only specific columns
-    df = df.loc[:, [ 'rule_name', 'rule_message', 'state', 'repository',  'location','first_seen_scan_id', 'triage_state', 'severity', 'confidence', 'relevant_since', 	'triaged_at', 'triage_comment', 'state_updated_at']] 
+    df = df.loc[:, [ 'rule_name', 'rule_message', 'state', 'repository',  'location', 'first_seen_scan_id', 'triage_state', 'severity', 'confidence', 'relevant_since', 	'triaged_at', 'triage_comment', 'state_updated_at']] 
     # df = df.loc[:, [ 'state', 'repository', 'first_seen_scan_id', 'triage_state', 'severity', 'confidence', 'relevant_since', 'rule_name', 'rule_message', 'location',	'triaged_at', 'triage_comment', 'state_updated_at']] 
     # 'state', 'repository', 'first_seen_scan_id', 'triage_state', 'severity', 'confidence', 'relevant_since', 'rule_name', 'rule_message', 'location',	'triaged_at', 'triage_comment', 'state_updated_at'
     # update column to datetime format
@@ -100,7 +100,26 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
     df = json_to_df(json_file)
 
     # Write the DataFrame to CSV
-    df.to_excel(xlsx_file, index=False)
+    # df.to_excel(xlsx_file, index=False)
+
+    writer = pd.ExcelWriter(xlsx_file) 
+    df.to_excel(writer, sheet_name='Findings', index=False, na_rep='NaN')
+
+    df.set_option('max_colwidth', 24)
+
+    col_idx = df.columns.get_loc('rule_name')
+    writer.sheets['Findings'].set_column(col_idx, col_idx, 36)
+    
+    col_idx = df.columns.get_loc('rule_message')
+    writer.sheets['Findings'].set_column(col_idx, col_idx, 72)
+    
+    col_idx = df.columns.get_loc('repository')
+    writer.sheets['Findings'].set_column(col_idx, col_idx, 72)
+    
+    col_idx = df.columns.get_loc('location')
+    writer.sheets['Findings'].set_column(col_idx, col_idx, 72)
+    
+    writer.save()
 
 if __name__ == "__main__":
     slug_name = get_deployments()
