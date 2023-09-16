@@ -105,7 +105,7 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
     writer = pd.ExcelWriter(xlsx_file) 
     df.to_excel(writer, sheet_name='Findings', index=False, na_rep='NaN')
 
-    df.set_option('max_colwidth', 24)
+    # df.set_option('max_colwidth', 24)
 
     col_idx = df.columns.get_loc('rule_name')
     writer.sheets['Findings'].set_column(col_idx, col_idx, 36)
