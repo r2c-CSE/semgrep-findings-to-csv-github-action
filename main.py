@@ -36,7 +36,6 @@ def get_projects(slug_name):
         print("Getting findings for: " + project_name)
         get_findings_per_repo(slug_name, project_name)
 
-
 def get_findings_per_repo(slug_name, repo):
       
     headers = {"Accept": "application/json", "Authorization": "Bearer " + SEMGREP_API_WEB_TOKEN}
@@ -82,6 +81,12 @@ def json_to_csv_pandas(json_file, csv_file):
     # Write the DataFrame to CSV
     df.to_csv(csv_file, index=False)
 
+def json_to_xlsx_pandas(json_file, xlsx_file):
+    # Read the JSON file into a DataFrame
+    df = pd.read_json(json_file)
+    
+    # Write the DataFrame to CSV
+    df.to_excel(xlsx_file, index=False)
 
 if __name__ == "__main__":
     slug_name = get_deployments()
@@ -89,6 +94,7 @@ if __name__ == "__main__":
     print ("starting process to combine JSON files")
     combine_json_files('.', 'combined.json')
     print ("completed combine process")
-    print ("starting process to convert combined JSON file to csv")
+    print ("starting process to convert combined JSON file to csv & xlsx")
     json_to_csv_pandas('combined.json', 'output.csv')
+    json_to_xlsx_pandas('combined.json', 'output.xlsx')
     print ("completed conversion process")
