@@ -75,7 +75,7 @@ def combine_json_files(folder_path, output_file):
     with open(output_file, 'w') as outfile:
         json.dump(combined_data, outfile, indent=4)
 
-def json_to_csv_pandas(json_file, csv_file):
+def json_to_df(json_file):
     # Read the JSON file into a DataFrame
     df = pd.read_json(json_file)
 
@@ -84,22 +84,20 @@ def json_to_csv_pandas(json_file, csv_file):
     # 'state', 'repository', 'first_seen_scan_id', 'triage_state', 'severity', 'confidence', 'relevant_since', 'rule_name', 'rule_message', 'location',	'triaged_at', 'triage_comment', 'state_updated_at'
     # update column to datetime format
     # df['first_seen_scan_id'] = pd.to_datetime(df['first_seen_scan_id'], format='%H-%M--%d-%b-%Y')
-    
 
+    return df
+
+def json_to_csv_pandas(json_file, csv_file):
+
+    df = json_to_df(json_file)
     
     # Write the DataFrame to CSV
     df.to_csv(csv_file, index=False)
 
 def json_to_xlsx_pandas(json_file, xlsx_file):
-    # Read the JSON file into a DataFrame
-    df = pd.read_json(json_file)
-    
-    # filter out only specific columns
-    df = df.loc[:, [ 'rule_name', 'rule_message', 'location', 'state', 'repository', 'first_seen_scan_id', 'triage_state', 'severity', 'confidence', 'relevant_since', 'triaged_at', 'triage_comment', 'state_updated_at']] 
-    # 'state', 'repository', 'first_seen_scan_id', 'triage_state', 'severity', 'confidence', 'relevant_since', 'rule_name', 'rule_message', 'location',	'triaged_at', 'triage_comment', 'state_updated_at'
-    # update column to datetime format
-    # df['first_seen_scan_id'] = pd.to_datetime(df['first_seen_scan_id'], format='%H-%M--%d-%b-%Y')
-    
+
+    df = json_to_df(json_file)
+
     # Write the DataFrame to CSV
     df.to_excel(xlsx_file, index=False)
 
