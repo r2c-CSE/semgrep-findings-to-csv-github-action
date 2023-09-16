@@ -25,21 +25,24 @@ jobs:
           pip install pandas openpyxl
 
       - name: create filename for findings file with current time & date-1
-        run: echo "CURRENT_DATE=$(date +'%H-%M--%d-%m-%y')" >> $GITHUB_ENV
+        run: |
+          echo "CURRENT_DATE=$(date +'%H-%M--%d-%m-%y')" >> $GITHUB_ENV
+          echo "FILENAME=Findings-$CURRENT_DATE-CSV" >> $GITHUB_ENV
+          echo "FILENAMEXLSX=Findings-$CURRENT_DATE-XLSX" >> $GITHUB_ENV
+    
+      # - name: create filename for findings file with current time & date-2
+      #   run: echo "TEMP_STR=Findings" >> $GITHUB_ENV
 
-      - name: create filename for findings file with current time & date-2
-        run: echo "TEMP_STR=Findings" >> $GITHUB_ENV
-
-      - name: create filename for findings file with current time & date-3
-        run: echo "FILENAME=$TEMP_STR-$CURRENT_DATE" >> $GITHUB_ENV
+      # - name: create filename for findings file with current time & date-3
+      #   run: echo "FILENAME=$TEMP_STR-$CURRENT_DATE" >> $GITHUB_ENV
       
-      - name: create filename for findings file with current time & date-3
-        run: echo "FILENAMEXLSX=$TEMP_STR-$CURRENT_DATE-XLSX" >> $GITHUB_ENV
+      # - name: create filename for findings file with current time & date-3
+      #   run: echo "FILENAMEXLSX=$TEMP_STR-$CURRENT_DATE-XLSX" >> $GITHUB_ENV
       
       - name: Use Date Env Var
         run: |
           echo "$CURRENT_DATE"
-          echo "$TEMP_STR"
+          # echo "$TEMP_STR"
           echo "$FILENAME"
           echo "$FILENAMEXLSX"
           
@@ -48,7 +51,7 @@ jobs:
           SEMGREP_API_WEB_TOKEN: ${{ secrets.SEMGREP_API_WEB_TOKEN }}
         run: |
           python main.py
-          python main-xlsx.py
+          # python main-xlsx.py
 
       - name: Upload findings as Artifact- CSV     
         uses: actions/upload-artifact@v3
