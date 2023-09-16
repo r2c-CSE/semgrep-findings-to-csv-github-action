@@ -26,9 +26,10 @@ jobs:
 
       - name: create filename for findings file with current time & date-1
         run: |
-          echo "CURRENT_DATE=Findings-$(date +'%H-%M--%d-%m-%y')" >> $GITHUB_ENV
-          echo "FILENAME=$CURRENT_DATE-CSV" >> $GITHUB_ENV
-          echo "FILENAMEXLSX=Findings-$CURRENT_DATE-XLSX" >> $GITHUB_ENV
+          echo "CURRENT_DATE=$(date +'%H-%M--%d-%m-%y')" >> $GITHUB_ENV
+          echo "TEMP_STR=Findings" >> $GITHUB_ENV
+          echo "FILENAME=$TEMP_STR-$CURRENT_DATE-CSV" >> $GITHUB_ENV
+          echo "FILENAMEXLSX=$TEMP_STR-$CURRENT_DATE-XLSX" >> $GITHUB_ENV
     
       # - name: create filename for findings file with current time & date-2
       #   run: echo "TEMP_STR=Findings" >> $GITHUB_ENV
