@@ -102,15 +102,14 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
     # Write the DataFrame to CSV
     # df.to_excel(xlsx_file, index=False)
 
+    writer = pd.ExcelWriter(xlsx_file, engine='xlsxwriter') 
+    df.to_excel(writer, sheet_name='Findings', index=False)
+
     for column in df:
         column_width = max(df[column].astype(str).map(len).max(), len(column))
         col_idx = df.columns.get_loc(column)
         writer.sheets['Findings'].set_column(col_idx, col_idx, column_width)
 
-
-    writer = pd.ExcelWriter(xlsx_file, engine='xlsxwriter') 
-    df.to_excel(writer, sheet_name='Findings', index=False)
-    
     col_idx = df.columns.get_loc('rule_name')
     writer.sheets['Findings'].set_column(col_idx, col_idx, 50)
     
