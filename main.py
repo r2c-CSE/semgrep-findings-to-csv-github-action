@@ -86,14 +86,14 @@ def json_to_df(json_file):
     # update column to datetime format
     # df['first_seen_scan_id'] = pd.to_datetime(df['first_seen_scan_id'], format='%H-%M--%d-%b-%Y')
 
-    df = df.rename(columns={'rule_name' : 'Finding Title' , 'rule_message'  : 'Finding Description & Remediation', 'relevant_since' : 'First Seen'})
-
     return df
 
 def json_to_csv_pandas(json_file, csv_file):
 
     df = json_to_df(json_file)
-    
+
+    df = df.rename(columns={'rule_name' : 'Finding Title' , 'rule_message'  : 'Finding Description & Remediation', 'relevant_since' : 'First Seen'})
+
     # Write the DataFrame to CSV
     df.to_csv(csv_file, index=False)
 
@@ -123,6 +123,9 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
     
     col_idx = df.columns.get_loc('location')
     writer.sheets['Findings'].set_column(col_idx, col_idx, 100)
+
+    df = df.rename(columns={'rule_name' : 'Finding Title' , 'rule_message'  : 'Finding Description & Remediation', 'relevant_since' : 'First Seen'})
+
 
     # col_idx = df.columns.get_loc('state')
     # writer.sheets['Findings'].set_column(col_idx, col_idx, 20)
