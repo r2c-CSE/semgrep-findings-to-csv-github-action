@@ -80,7 +80,8 @@ def json_to_csv_pandas(json_file, csv_file):
     df = pd.read_json(json_file)
 
     # filter out only specific columns
-    
+    df = df.loc[:, [ 'state', 'repository', 'first_seen_scan_id', 'triage_state', 'severity', 'confidence', 'relevant_since', 'rule_name', 'rule_message', 'location',	'triaged_at', 'triage_comment', 'state_updated_at']] 
+    # 'state', 'repository', 'first_seen_scan_id', 'triage_state', 'severity', 'confidence', 'relevant_since', 'rule_name', 'rule_message', 'location',	'triaged_at', 'triage_comment', 'state_updated_at'
     # update column to datetime format
     df['first_seen_scan_id'] = pd.to_datetime(df['first_seen_scan_id'], format='%H-%M--%d-%b-%Y')
     
@@ -92,6 +93,12 @@ def json_to_csv_pandas(json_file, csv_file):
 def json_to_xlsx_pandas(json_file, xlsx_file):
     # Read the JSON file into a DataFrame
     df = pd.read_json(json_file)
+    
+    # filter out only specific columns
+    df = df.loc[:, [ 'state', 'repository', 'first_seen_scan_id', 'triage_state', 'severity', 'confidence', 'relevant_since', 'rule_name', 'rule_message', 'location',	'triaged_at', 'triage_comment', 'state_updated_at']] 
+    # 'state', 'repository', 'first_seen_scan_id', 'triage_state', 'severity', 'confidence', 'relevant_since', 'rule_name', 'rule_message', 'location',	'triaged_at', 'triage_comment', 'state_updated_at'
+    # update column to datetime format
+    df['first_seen_scan_id'] = pd.to_datetime(df['first_seen_scan_id'], format='%H-%M--%d-%b-%Y')
     
     # Write the DataFrame to CSV
     df.to_excel(xlsx_file, index=False)
