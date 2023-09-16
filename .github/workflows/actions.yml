@@ -50,7 +50,6 @@ jobs:
           SEMGREP_API_WEB_TOKEN: ${{ secrets.SEMGREP_API_WEB_TOKEN }}
         run: |
           python main.py
-          # python main-xlsx.py
 
       - name: Upload findings as Artifact- CSV     
         uses: actions/upload-artifact@v3
