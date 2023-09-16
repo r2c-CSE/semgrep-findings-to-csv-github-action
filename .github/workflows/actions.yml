@@ -42,7 +42,6 @@ jobs:
       - name: Use Date Env Var
         run: |
           echo "$CURRENT_DATE"
-          # echo "$TEMP_STR"
           echo "$FILENAME"
           echo "$FILENAMEXLSX"
           
