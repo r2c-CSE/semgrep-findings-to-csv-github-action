@@ -127,12 +127,20 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
     col_idx = df.columns.get_loc('location')
     writer.sheets['Findings'].set_column(col_idx, col_idx, 100)
 
-    # workbook = writer.book
+    workbook = writer.book
     # worksheet = writer.sheets['Findings']
+
+    cell_format = workbook.add_format()
+    cell_format.set_text_wrap()
+
+    worksheet.set_column('A:A', 50, cell_format)
+    worksheet.set_column('B:B', 100, cell_format)
+    worksheet.set_column('K:L', 100, cell_format)
 
     # # Add some cell formats.
     # datatime_format = workbook.add_format({'datetime_format': 'mmm d yyyy hh:mm'})
 
+    
     
     # # Set the column width and format.
     # worksheet.set_column(4, 4, 30, datatime_format)
