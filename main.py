@@ -128,7 +128,7 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
     writer.sheets['Findings'].set_column(col_idx, col_idx, 100)
 
     workbook = writer.book
-    # worksheet = writer.sheets['Findings']
+    worksheet = writer.sheets['Findings']
 
     cell_format = workbook.add_format()
     cell_format.set_text_wrap()
