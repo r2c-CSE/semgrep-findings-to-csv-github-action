@@ -115,10 +115,10 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
         col_idx = df.columns.get_loc(column)
         writer.sheets['Findings'].set_column(col_idx, col_idx, column_width)
 
-    col_idx = df.columns.get_loc('rule_name')
+    col_idx = df.columns.get_loc('Finding Title')
     writer.sheets['Findings'].set_column(col_idx, col_idx, 50)
     
-    col_idx = df.columns.get_loc('rule_message')
+    col_idx = df.columns.get_loc('Finding Description & Remediation')
     writer.sheets['Findings'].set_column(col_idx, col_idx, 150)
     
     col_idx = df.columns.get_loc('repository')
@@ -127,7 +127,7 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
     col_idx = df.columns.get_loc('location')
     writer.sheets['Findings'].set_column(col_idx, col_idx, 100)
 
-    df = df.rename(columns={'rule_name' : 'Finding Title' , 'rule_message'  : 'Finding Description & Remediation', 'relevant_since' : 'First Seen'})
+    # df = df.rename(columns={'rule_name' : 'Finding Title' , 'rule_message'  : 'Finding Description & Remediation', 'relevant_since' : 'First Seen'})
 
 
     # col_idx = df.columns.get_loc('state')
