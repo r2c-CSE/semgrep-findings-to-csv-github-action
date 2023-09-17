@@ -13,6 +13,7 @@ This example shows how to run a Python script as cron job with GitHub Actions to
   * Get your projects
   * Dump a JSON file for each projects
   * Combines the per project JSON files into a single JSON files for the full Organization
+  * Filter the JSON for specific columns that are of interest and rename column names
   * Converts the combined JSON file into a CSV & XLSX file
   * Saves the CSV & XLSX file as an Artifact in GitHUb actions. The Artifact name is "Findings-Current Time -- Current Date"
 
