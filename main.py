@@ -79,8 +79,11 @@ def json_to_df(json_file):
     # Read the JSON file into a DataFrame
     df = pd.read_json(json_file)
 
+    df = df.rename(columns={'rule_name' : 'Finding Title' , 'rule_message'  : 'Finding Description & Remediation', 'relevant_since' : 'First Seen'})
+
+
     # filter out only specific columns
-    df = df.loc[:, [ 'rule_name', 'rule_message', 'state', 'repository',  'location', 'severity', 'confidence', 'relevant_since', 'triage_state',	'triaged_at', 'triage_comment', 'state_updated_at']] 
+    df = df.loc[:, [ 'Finding Title', 'Finding Description & Remediation', 'state', 'First Seen', 'severity', 'confidence',  'triage_state', 'triaged_at', 'triage_comment', 'state_updated_at', 'repository',  'location' ]] 
     # df = df.loc[:, [ 'state', 'repository', 'first_seen_scan_id', 'triage_state', 'severity', 'confidence', 'relevant_since', 'rule_name', 'rule_message', 'location',	'triaged_at', 'triage_comment', 'state_updated_at']] 
     # 'state', 'repository', 'first_seen_scan_id', 'triage_state', 'severity', 'confidence', 'relevant_since', 'rule_name', 'rule_message', 'location',	'triaged_at', 'triage_comment', 'state_updated_at'
     # update column to datetime format
