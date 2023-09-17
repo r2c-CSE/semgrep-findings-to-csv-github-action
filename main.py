@@ -137,6 +137,9 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
     worksheet.set_column('B:B', 100, cell_format)
     worksheet.set_column('K:L', 100, cell_format)
 
+    cell_format_datetime.set_num_format('dd/mm/yyyy hh:mm AM/PM')
+    worksheet.set_column('D:D, 30, cell_format)
+
     # # Add some cell formats.
     # datatime_format = workbook.add_format({'datetime_format': 'mmm d yyyy hh:mm'})
 
