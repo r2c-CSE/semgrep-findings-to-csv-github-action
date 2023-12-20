@@ -105,24 +105,14 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
     df = json_to_df(json_file)
     
     for column in df.columns:
-        print (column, " : " , pd.api.types.is_datetime64_any_dtype(df[column]))
+        # print (column, " : " , pd.api.types.is_datetime64_any_dtype(df[column]))
         if pd.api.types.is_datetime64_any_dtype(df[column]):
             df[column] = df[column].dt.tz_localize(None)
-            print (column, " : removed TZ info" , pd.api.types.is_datetime64_any_dtype(df[column]))
+            # print (column, " : removed TZ info" , pd.api.types.is_datetime64_any_dtype(df[column]))
 
     
-    # for column in df.select_dtypes(include=['datetime']):
-    #     df[column] = df[column].dt.tz_localize(None)
-    # df['First Seen'] = df['First Seen'].dt.tz_localize(None)
-    # df['state_updated_at'] = df['state_updated_at'].dt.tz_localize(None)
-    # df['triaged_at'] = df['triaged_at'].dt.tz_localize(None)
-
-
-    # Write the DataFrame to CSV
-    # df.to_excel(xlsx_file, index=False)
-
-    # writer = pd.ExcelWriter(xlsx_file, engine='xlsxwriter', datetime_format="mmm d yyyy hh:mm") 
-    writer = pd.ExcelWriter(xlsx_file, engine='xlsxwriter') 
+    writer = pd.ExcelWriter(xlsx_file, engine='xlsxwriter', datetime_format="mmm d yyyy hh:mm") 
+    # writer = pd.ExcelWriter(xlsx_file, engine='xlsxwriter') 
     df.to_excel(writer, sheet_name='Findings', index=False)
 
     for column in df:
