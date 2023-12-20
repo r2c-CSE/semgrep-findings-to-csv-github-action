@@ -103,14 +103,15 @@ def json_to_csv_pandas(json_file, csv_file):
 def json_to_xlsx_pandas(json_file, xlsx_file):
 
     df = json_to_df(json_file)
-    for column in df.select_dtypes(include=['datetime']):
-        df[column] = df[column].dt.tz_localize(None)
+    # for column in df.select_dtypes(include=['datetime']):
+    #     df[column] = df[column].dt.tz_localize(None)
 
 
     # Write the DataFrame to CSV
     # df.to_excel(xlsx_file, index=False)
 
-    writer = pd.ExcelWriter(xlsx_file, engine='xlsxwriter', datetime_format="mmm d yyyy hh:mm") 
+    # writer = pd.ExcelWriter(xlsx_file, engine='xlsxwriter', datetime_format="mmm d yyyy hh:mm") 
+    writer = pd.ExcelWriter(xlsx_file, engine='xlsxwriter') 
     df.to_excel(writer, sheet_name='Findings', index=False)
 
     for column in df:
