@@ -172,9 +172,9 @@ if __name__ == "__main__":
     combine_json_files('.', 'combined.json')
     print ("completed combine process")
 
-    my_file = open("combined.json")
-    loaded_json = json.load(my_file)
-    print(json.dumps(loaded_json, indent=2))
+    # my_file = open("combined.json")
+    # loaded_json = json.load(my_file)
+    # print(json.dumps(loaded_json, indent=2))
     
     print ("starting process to convert combined JSON file to csv & xlsx")
     json_to_csv_pandas('combined.json', 'output.csv')
