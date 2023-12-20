@@ -103,6 +103,13 @@ def json_to_csv_pandas(json_file, csv_file):
 def json_to_xlsx_pandas(json_file, xlsx_file):
 
     df = json_to_df(json_file)
+    
+    for column in df.columns:
+        print (column, " : " , pd.api.types.is_datetime64_any_dtype(df[column]))
+        if pd.api.types.is_datetime64_any_dtype(df[column]):
+            df[column] = df[column].dt.tz_localize(None)
+
+    
     # for column in df.select_dtypes(include=['datetime']):
     #     df[column] = df[column].dt.tz_localize(None)
     df['First Seen'] = df['First Seen'].dt.tz_localize(None)
