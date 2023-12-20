@@ -105,6 +105,9 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
     df = json_to_df(json_file)
     # for column in df.select_dtypes(include=['datetime']):
     #     df[column] = df[column].dt.tz_localize(None)
+    df['First Seen'] = df['First Seen'].dt.tz_localize(None)
+    df['state_updated_at'] = df['state_updated_at'].dt.tz_localize(None)
+    df['triaged_at'] = df['triaged_at'].dt.tz_localize(None)
 
 
     # Write the DataFrame to CSV
