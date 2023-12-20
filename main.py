@@ -104,7 +104,7 @@ def json_to_xlsx_pandas(json_file, xlsx_file):
 
     df = json_to_df(json_file)
     for column in df.select_dtypes(include=['datetime']):
-    df[column] = df[column].dt.tz_localize(None)
+        df[column] = df[column].dt.tz_localize(None)
 
 
     # Write the DataFrame to CSV
